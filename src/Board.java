@@ -7,20 +7,22 @@
 
 import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.StdOut;
+import edu.princeton.cs.algs4.StdRandom;
+
 public class Board {
 
     private int[][] board;
+    private int n = 0;
     /**
      * construct a board from an n-by-n array of blocks
      * (where blocks[i][j] = block in row i, column j)
      * @param blocks
      */
     public Board(int[][] blocks) {
-        int n = blocks.length;
-        int m = blocks[0].length;
-        board = new int[n][m];
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < m; j++) {
+        this.n = blocks.length;
+        board = new int[this.n][this.n];
+        for (int i = 0; i < this.n; i++) {
+            for (int j = 0; j < this.n; j++) {
                 board[i][j] = blocks[i][j];
             }
         }
@@ -31,7 +33,7 @@ public class Board {
      * @return int
      */
     public int dimension() {
-        return 0;
+        return this.n;
     }
 
     /**
@@ -56,6 +58,19 @@ public class Board {
 
     }
 
+
+    private void exch(Board node) {
+        int i = 0;
+        int cap = 2;
+        int n = dimension();
+        while (i < cap) {
+            int index = StdRandom.uniform(n);
+            if (board[index/n][index%n] != 0) {
+
+            }
+        }
+    }
+
     /**
      * does this board equal y?
      * @return boolean true represents equal false otherwise
@@ -68,9 +83,9 @@ public class Board {
      * all neighboring boards
      * @return iterable of Board data type
      */
-    public Iterable<Board> neightbors() {
-        
-    }
+//    public Iterable<Board> neightbors() {
+//
+//    }
 
     /**
      * out put in ***
@@ -94,9 +109,16 @@ public class Board {
 
     public static void main(String[] args) {
         In in = new In(args[0]);
-        StdOut.print(in.readAll());
-        //int n = args[]
-        //int[][] a = new int[2][2];
+        int n = in.readInt();
+        int[][] blocks = new int[n][n];
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                blocks[i][j] = in.readInt();
+            }
+        }
+
+        Board board = new Board(blocks);
+        StdOut.print(board);
 
     }
 
